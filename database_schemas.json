@@ -1,0 +1,105 @@
+{
+  "schemas": {
+    "ecommerce": {
+      "name": "E-Commerce Database",
+      "description": "A typical e-commerce database with customers, orders, products, and order items.",
+      "tables": {
+        "customers": {
+          "columns": [
+            {"name": "customer_id", "type": "INT", "description": "Primary key"},
+            {"name": "first_name", "type": "VARCHAR(50)", "description": "Customer's first name"},
+            {"name": "last_name", "type": "VARCHAR(50)", "description": "Customer's last name"},
+            {"name": "email", "type": "VARCHAR(100)", "description": "Unique email address"},
+            {"name": "phone", "type": "VARCHAR(20)", "description": "Phone number"},
+            {"name": "address", "type": "TEXT", "description": "Full address"},
+            {"name": "city", "type": "VARCHAR(50)", "description": "City"},
+            {"name": "state", "type": "VARCHAR(50)", "description": "State/Province"},
+            {"name": "zip_code", "type": "VARCHAR(20)", "description": "ZIP/Postal code"},
+            {"name": "country", "type": "VARCHAR(50)", "description": "Country"},
+            {"name": "created_at", "type": "TIMESTAMP", "description": "Account creation date"},
+            {"name": "last_login", "type": "TIMESTAMP", "description": "Last login timestamp"}
+          ]
+        },
+        "orders": {
+          "columns": [
+            {"name": "order_id", "type": "INT", "description": "Primary key"},
+            {"name": "customer_id", "type": "INT", "description": "Foreign key to customers"},
+            {"name": "order_date", "type": "TIMESTAMP", "description": "Order creation date"},
+            {"name": "total_amount", "type": "DECIMAL(10,2)", "description": "Total order amount"},
+            {"name": "status", "type": "VARCHAR(20)", "description": "Order status (pending, shipped, delivered, cancelled)"},
+            {"name": "shipping_address", "type": "TEXT", "description": "Shipping address"},
+            {"name": "payment_method", "type": "VARCHAR(50)", "description": "Payment method used"}
+          ]
+        },
+        "products": {
+          "columns": [
+            {"name": "product_id", "type": "INT", "description": "Primary key"},
+            {"name": "name", "type": "VARCHAR(100)", "description": "Product name"},
+            {"name": "description", "type": "TEXT", "description": "Product description"},
+            {"name": "price", "type": "DECIMAL(10,2)", "description": "Unit price"},
+            {"name": "stock_quantity", "type": "INT", "description": "Available stock"},
+            {"name": "category", "type": "VARCHAR(50)", "description": "Product category"},
+            {"name": "created_at", "type": "TIMESTAMP", "description": "Product creation date"}
+          ]
+        },
+        "order_items": {
+          "columns": [
+            {"name": "order_item_id", "type": "INT", "description": "Primary key"},
+            {"name": "order_id", "type": "INT", "description": "Foreign key to orders"},
+            {"name": "product_id", "type": "INT", "description": "Foreign key to products"},
+            {"name": "quantity", "type": "INT", "description": "Number of items"},
+            {"name": "price", "type": "DECIMAL(10,2)", "description": "Price at time of purchase"}
+          ]
+        }
+      }
+    },
+    "library": {
+      "name": "Library Database",
+      "description": "A library management system with books, authors, members, and borrowing records.",
+      "tables": {
+        "authors": {
+          "columns": [
+            {"name": "author_id", "type": "INT", "description": "Primary key"},
+            {"name": "first_name", "type": "VARCHAR(50)", "description": "Author's first name"},
+            {"name": "last_name", "type": "VARCHAR(50)", "description": "Author's last name"},
+            {"name": "birth_year", "type": "INT", "description": "Year of birth"},
+            {"name": "nationality", "type": "VARCHAR(50)", "description": "Author's nationality"}
+          ]
+        },
+        "books": {
+          "columns": [
+            {"name": "book_id", "type": "INT", "description": "Primary key"},
+            {"name": "title", "type": "VARCHAR(200)", "description": "Book title"},
+            {"name": "author_id", "type": "INT", "description": "Foreign key to authors"},
+            {"name": "isbn", "type": "VARCHAR(13)", "description": "ISBN number"},
+            {"name": "publication_year", "type": "INT", "description": "Year published"},
+            {"name": "genre", "type": "VARCHAR(50)", "description": "Book genre"},
+            {"name": "total_copies", "type": "INT", "description": "Total copies in library"},
+            {"name": "available_copies", "type": "INT", "description": "Copies currently available"}
+          ]
+        },
+        "members": {
+          "columns": [
+            {"name": "member_id", "type": "INT", "description": "Primary key"},
+            {"name": "first_name", "type": "VARCHAR(50)", "description": "Member's first name"},
+            {"name": "last_name", "type": "VARCHAR(50)", "description": "Member's last name"},
+            {"name": "email", "type": "VARCHAR(100)", "description": "Email address"},
+            {"name": "membership_date", "type": "DATE", "description": "Date joined"},
+            {"name": "membership_type", "type": "VARCHAR(20)", "description": "Type of membership"}
+          ]
+        },
+        "borrowings": {
+          "columns": [
+            {"name": "borrowing_id", "type": "INT", "description": "Primary key"},
+            {"name": "member_id", "type": "INT", "description": "Foreign key to members"},
+            {"name": "book_id", "type": "INT", "description": "Foreign key to books"},
+            {"name": "borrow_date", "type": "DATE", "description": "Date borrowed"},
+            {"name": "due_date", "type": "DATE", "description": "Due date for return"},
+            {"name": "return_date", "type": "DATE", "description": "Actual return date (NULL if not returned)"},
+            {"name": "status", "type": "VARCHAR(20)", "description": "Borrowing status"}
+          ]
+        }
+      }
+    }
+  }
+}
